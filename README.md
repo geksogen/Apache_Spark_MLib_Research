@@ -101,3 +101,55 @@ nano ~/.ssh/authorized_keys
 cd ./spark-3.0.0/sbin
 ./start-all.sh
 ```
+###*** external IP********************************************
+#Master and workers
+```BASH
+sudo nano /etc/hosts
+51.250.9.158 sp-master
+89.169.129.85 sp-slave1
+89.169.133.130 sp-slave2
+#
+sudo apt-get update
+sudo apt install openjdk-8-jdk -y
+sudo apt-get install scala -y
+```
+#On Master only
+```BASH
+#Configure SSH IP External
+sudo su
+ssh-keygen
+cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+# id_rsa.pub >> nano root/.ssh/authorized_keys зайти и положить на каждую ноду ключик который сгенерировался на мастер ноде
+```
+#Master and workers
+```BASH
+#Install Spark
+wget https://archive.apache.org/dist/spark/spark-3.1.1/spark-3.1.1-bin-hadoop3.2.tgz
+tar xvf spark-3.1.1-bin-hadoop3.2.tgz
+sudo mv spark-3.1.1-bin-hadoop3.2 /usr/local/spark #directories for Spark
+sudo nano ~/.bashrc
+export PATH=$PATH:/usr/local/spark/bin
+source ~/.bashrc
+#################
+cd /usr/local/spark/conf
+cp spark-env.sh.template spark-env.sh
+sudo nano spark-env.sh
+#add to end line on the file
+export SPARK_MASTER_HOST=<IP internal>
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+#
+sudo nano /usr/local/spark/conf/slaves
+sp-slave1
+sp-slave2
+```
+
+#On Master only
+```BASH
+#Add Workers or Slaves
+sudo nano /usr/local/spark/conf/slaves
+sp-slave1
+sp-slave2
+cd /usr/local/spark
+./sbin/start-all.sh
+
+```
