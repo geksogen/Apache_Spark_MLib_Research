@@ -146,10 +146,7 @@ sp-slave2
 #On Master only
 ```BASH
 #Add Workers or Slaves
-sudo nano /usr/local/spark/conf/slaves
-sp-slave1
-sp-slave2
 cd /usr/local/spark
 ./sbin/start-all.sh
-
+jps
 ```
