@@ -2,7 +2,7 @@
 # the managed machines. The user must be able to use sudo without asking
 # for password.
 ansible_connection: ssh
-ansible_user: root
+ansible_user: student
 
 gather_facts: True
 gathering: smart
