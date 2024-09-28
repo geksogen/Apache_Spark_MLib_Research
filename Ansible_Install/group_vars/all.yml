@@ -1,0 +1,18 @@
+# Account name of remote user. Ansible will use this user account to ssh into
+# the managed machines. The user must be able to use sudo without asking
+# for password.
+ansible_connection: ssh
+ansible_user: root
+
+gather_facts: True
+gathering: smart
+
+# Tell ansible not to check host key
+host_key_checking: False
+
+# Common packages
+install_java: True
+python_version: 3
+
+security:
+  enable_kerberos: False

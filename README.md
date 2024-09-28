@@ -16,14 +16,6 @@ sudo apt-get update
 sudo apt install openjdk-8-jdk -y
 sudo apt-get install scala -y
 ```
-####On Master only
-```BASH
-#Configure SSH IP External
-sudo su
-ssh-keygen
-cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
-# id_rsa.pub >> nano ~/.ssh/authorized_keys зайти и положить на каждую ноду ключик который сгенерировался на мастер ноде
-```
 ####Master and workers
 ```BASH
 #Install Spark
@@ -44,6 +36,14 @@ export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 sudo nano /usr/local/spark/conf/slaves
 sp-slave1
 sp-slave2
+```
+####On Master only
+```BASH
+#Configure SSH IP External
+sudo su
+ssh-keygen
+cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+# id_rsa.pub >> nano ~/.ssh/authorized_keys зайти и положить на каждую ноду ключик который сгенерировался на мастер ноде
 ```
 
 ####On Master only

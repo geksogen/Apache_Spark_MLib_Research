@@ -1,0 +1,23 @@
+# apt update
+- name: Run the equivalent of "apt-get update"
+  apt:
+     update_cache: yes
+  become: true
+
+- name: Java install
+  shell: "apt install openjdk-8-jdk -y"
+  become: true
+
+- name: Scala install
+  shell: "apt-get install scala -y"
+  become: true
+
+- name: Download Spark
+  shell: "wget https://archive.apache.org/dist/spark/spark-3.1.1/spark-3.1.1-bin-hadoop3.2.tgz"
+  become: true
+
+- name: Unzip Spark
+  shell: "tar xvf spark-3.1.1-bin-hadoop3.2.tgz"
+  become: true
+
+
