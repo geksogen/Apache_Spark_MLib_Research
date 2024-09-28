@@ -31,7 +31,7 @@
 
 - name: Update bashrc
   lineinfile:
-    dest: /home/foo/.bashrc
+    dest: ~/.bashrc
     line: "PATH=$PATH:/usr/local/spark/bin"
 
 - name: Save bashrc
