@@ -49,3 +49,4 @@
   shell: source /root/.bashrc
   become: true
 
+#~/.profile
