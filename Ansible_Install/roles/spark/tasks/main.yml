@@ -47,6 +47,6 @@
       export PATH="$PATH:/usr/local/spark/bin";
 
 - name: Save bashrc
-  shell: "source /home/root/.bashrc"
+  shell: "source ~/.bashrc"
   become: true
 
