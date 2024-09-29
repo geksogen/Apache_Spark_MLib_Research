@@ -38,13 +38,12 @@
 #    regexp: '^#fi'
 #    line: "PATH=$PATH:/usr/local/spark/bin"
 
-- name: append environment variables to the end of .bashrc file
+- name: make sure function is in bashrc
   blockinfile:
-    dest: "~/.bashrc"
-    insertafter: EOF
-    block: |
-      # environment variable exports
-      export PATH="$PATH:/usr/local/spark/bin";
+    dest: ~/.bashrc
+    block: |-
+          # environment variable exports
+          export PATH="$PATH:/usr/local/spark/bin"
 
 - name: Save bashrc
   shell: source ~/.bashrc
