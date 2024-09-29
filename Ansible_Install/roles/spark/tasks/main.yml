@@ -44,7 +44,6 @@
     block: |-
           # environment variable exports
           export PATH="$PATH:/usr/local/spark/bin"
-    become: true
 
 - name: Save bashrc
   shell: source ~/.bashrc
