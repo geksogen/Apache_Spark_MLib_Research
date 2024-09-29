@@ -40,10 +40,11 @@
 
 - name: make sure function is in bashrc
   blockinfile:
-    dest: ~/.bashrc
+    dest: /home/root/.bashrc
     block: |-
           # environment variable exports
           export PATH="$PATH:/usr/local/spark/bin"
+    become: true
 
 - name: Save bashrc
   shell: source ~/.bashrc
