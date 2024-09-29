@@ -40,7 +40,7 @@
 
 - name: append environment variables to the end of .bashrc file
   blockinfile:
-    dest: "/home/root/.bashrc"
+    dest: "~/.bashrc"
     insertafter: EOF
     block: |
       # environment variable exports
