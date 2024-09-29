@@ -34,11 +34,11 @@
 
 - name: Update bashrc
   lineinfile:
-    dest: /root/.bashrc
+    dest: /home/root/.bashrc
     regexp: '^#fi'
     line: "PATH=$PATH:/usr/local/spark/bin"
 
 - name: Save bashrc
-  shell: "source /root/.bashrc"
+  shell: "source /home/root/.bashrc"
   become: true
 
