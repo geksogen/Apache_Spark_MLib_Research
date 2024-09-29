@@ -1,3 +1,4 @@
+# export ANSIBLE_HOST_KEY_CHECKING=False
 # apt update
 - name: Run the equivalent of "apt-get update"
   apt:
@@ -21,6 +22,12 @@
 #  shell: "tar xvf spark-3.1.1-bin-hadoop3.2.tgz"
 #  become: true
 
+#- name: Unarchive a file that is already on the remote machine
+#  unarchive:
+#    src: /tmp/foo.zip
+#    dest: /usr/local/bin
+#    remote_src: yes
+
 #- name: Create home dir for Spark
 #  shell: "mv spark-3.1.1-bin-hadoop3.2 /usr/local/spark"
 #  become: true
@@ -28,6 +35,7 @@
 - name: Update bashrc
   lineinfile:
     dest: ~/.bashrc
+    regexp: '^#fi'
     line: "PATH=$PATH:/usr/local/spark/bin"
 
 - name: Save bashrc
