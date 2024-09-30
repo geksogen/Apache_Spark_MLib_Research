@@ -79,8 +79,8 @@ sudo nano ~/.bashrc
 export PATH=$PATH:/usr/local/spark/bin
 source ~/.bashrc
 #
-cd /usr/local/spark/conf
-cp spark-env.sh.template spark-env.sh
+#cd /usr/local/spark/conf
+#cp spark-env.sh.template spark-env.sh
 sudo nano spark-env.sh
 #add to end line on the file
 export SPARK_MASTER_HOST=<IP internal>
