@@ -59,5 +59,54 @@ jps
 ./bin/spark-submit --master spark://10.128.0.84:7077 /usr/local/spark/examples/src/main/python/pi.py 10000
 ```
 
+####Use Ansible install
+```BASH
+#Clone git repo
+git clone https://github.com/geksogen/Apache_Spark_MLib_Research.git
+cd Ansible_install
+#add IP to host.ini
+ansible-playbook -i host.ini setup-spark-standalone.yml
+```
+####Master and workers
+```BASH
+# public IP
+sudo nano /etc/hosts
+<IP> sp-master
+<IP> sp-slave1
+<IP> sp-slave2
+#
+sudo nano ~/.bashrc
+export PATH=$PATH:/usr/local/spark/bin
+source ~/.bashrc
+#
+cd /usr/local/spark/conf
+cp spark-env.sh.template spark-env.sh
+sudo nano spark-env.sh
+#add to end line on the file
+export SPARK_MASTER_HOST=<IP internal>
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+#add slave
+sudo nano /usr/local/spark/conf/slaves
+sp-slave1
+sp-slave2
+```
+####On Master only
+```BASH
+#Configure SSH IP External
+sudo su
+ssh-keygen
+cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+# id_rsa.pub >> nano ~/.ssh/authorized_keys зайти и положить на каждую ноду ключик который сгенерировался на мастер ноде
+```
+
+####On Master only
+```BASH
+#Add Workers or Slaves
+cd /usr/local/spark
+./sbin/start-all.sh
+jps
+```
+
+
 ####Resources
 [PySpark Tutorial](https://sparkbyexamples.com/pyspark-tutorial/)
