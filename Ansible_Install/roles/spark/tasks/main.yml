@@ -13,24 +13,24 @@
   shell: "apt-get install scala -y"
   become: true
 
-#- name: Download Spark
-#  ansible.builtin.get_url:
-#    url: https://archive.apache.org/dist/spark/spark-3.1.1/spark-3.1.1-bin-hadoop3.2.tgz
-#    dest: /home/student
+- name: Download Spark
+  ansible.builtin.get_url:
+    url: https://archive.apache.org/dist/spark/spark-3.1.1/spark-3.1.1-bin-hadoop3.2.tgz
+    dest: /home/student
 
-#- name: Unzip Spark
-#  shell: "tar xvf spark-3.1.1-bin-hadoop3.2.tgz"
-#  become: true
+- name: Unzip Spark
+  shell: "tar xvf spark-3.1.1-bin-hadoop3.2.tgz"
+  become: true
 
-#- name: Unarchive a file that is already on the remote machine
-#  unarchive:
-#    src: /tmp/foo.zip
-#    dest: /usr/local/bin
-#    remote_src: yes
+- name: Unarchive a file that is already on the remote machine
+  unarchive:
+    src: /tmp/foo.zip
+    dest: /usr/local/bin
+    remote_src: yes
 
-#- name: Create home dir for Spark
-#  shell: "mv spark-3.1.1-bin-hadoop3.2 /usr/local/spark"
-#  become: true
+- name: Create home dir for Spark
+  shell: "mv spark-3.1.1-bin-hadoop3.2 /usr/local/spark"
+  become: true
 
 #- name: Update bashrc
 #  lineinfile:
@@ -38,15 +38,15 @@
 #    regexp: '^#fi'
 #    line: "PATH=$PATH:/usr/local/spark/bin"
 
-- name: make sure function is in bashrc
-  blockinfile:
-    dest: /root/.bashrc
-    block: |-
-          # environment variable exports
-          export PATH="$PATH:/usr/local/spark/bin"
+#- name: make sure function is in bashrc
+#  blockinfile:
+#    dest: /root/.bashrc
+#    block: |-
+#          # environment variable exports
+#          export PATH="$PATH:/usr/local/spark/bin"
 
-- name: Save bashrc
-  shell: source /root/.bashrc
-  become: true
+#- name: Save bashrc
+#  shell: source /root/.bashrc
+#  become: true
 
 #~/.profile
