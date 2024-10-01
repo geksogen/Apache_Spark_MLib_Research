@@ -1,16 +1,16 @@
-
-- name: Create User
-  ansible.builtin.user:
-    name: "{{ sp-user }}"
-    state: present
-    shell: /bin/bash
-    password: "{{ userpass | password_hash('sha512') }}"
-    update_password: on_create
-    groups: "{{ super_group }}"
-    append: yes
-
-- name: Deploy SSH Public Key
-  ansible.posix.authorized_key:
-    user: "{{ sp-user }}"
-    state: present
-    key: "{{ lookup('file', '/home/{{ sp-user }}/.ssh/id_rsa.pub') }}"
+---
+- hosts: BPC
+  tasks:
+  - name: User Create for sp-user
+    ansible.builtin.user:
+      name: sp-user
+      comment: user for spark
+      createhome: yes
+      home: /home/sp-user
+      shell: /bin/bash
+  - name: Upload/copy the keys
+    authorized_key:
+           user: sp-user
+           state: present
+           manage_dir: yes
+           key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
