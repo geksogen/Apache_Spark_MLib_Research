@@ -6,13 +6,3 @@ ansible_user: student
 
 gather_facts: True
 gathering: smart
-
-# Tell ansible not to check host key
-host_key_checking: False
-
-# Common packages
-install_java: True
-python_version: 3
-
-security:
-  enable_kerberos: False
