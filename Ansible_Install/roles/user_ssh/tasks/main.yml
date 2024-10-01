@@ -1,7 +1,7 @@
 
 - name: Create User
   ansible.builtin.user:
-    name: "{{ username }}"
+    name: "{{ sp-user }}"
     state: present
     shell: /bin/bash
     password: "{{ userpass | password_hash('sha512') }}"
@@ -11,6 +11,6 @@
 
 - name: Deploy SSH Public Key
   ansible.posix.authorized_key:
-    user: "{{ username }}"
+    user: "{{ sp-user }}"
     state: present
-    key: "{{ lookup('file', '/home/{{ username }}/.ssh/id_rsa.pub') }}"
+    key: "{{ lookup('file', '/home/{{ sp-user }}/.ssh/id_rsa.pub') }}"
