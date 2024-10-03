@@ -76,17 +76,17 @@ sudo nano /etc/hosts
 <IP> sp-slave2
 #
 sudo nano ~/.bashrc
-export PATH=$PATH:/usr/local/spark/bin
+export PATH=$PATH:/home/sp-user/spark/bin
 source ~/.bashrc
 #
 #cd /usr/local/spark/conf
-sudo cp /usr/local/spark/conf/spark-env.sh.template spark-env.sh
+sudo cp /home/sp-user/spark/conf/spark-env.sh.template spark-env.sh
 sudo nano spark-env.sh
 #add to end line on the file
 export SPARK_MASTER_HOST=<IP internal>
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 #add slave
-sudo nano /usr/local/spark/conf/slaves
+sudo nano /home/sp-user/spark/conf/slaves
 sp-slave1
 sp-slave2
 ```
@@ -94,7 +94,7 @@ sp-slave2
 ####On Master only
 ```BASH
 #Add Workers or Slaves
-cd /usr/local/spark
+cd /home/sp-user/spark
 ./sbin/start-all.sh
 jps
 ```
