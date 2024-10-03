@@ -99,6 +99,47 @@ cd /usr/local/spark
 jps
 ```
 
+####For test
+```BASH
+****************node_1*********************************
+
+sudo adduser sp-user
+sudo usermod -aG sudo sp-user
+su sp-user    # sudo su sp-user 
+
+#no password
+sudo nano /etc/sudoers
+sp-user ALL=(ALL:ALL) ALL<>
+sp-user ALL=(ALL:ALL) NOPASSWD: ALL
+logout
+sudo su sp-user #must be no password!!!  
+
+
+****************node_2*********************************
+sudo adduser sp-user
+sudo usermod -aG sudo sp-user
+su sp-user   # sudo su sp-user
+
+#no password
+sudo nano /etc/sudoers
+sp-user ALL=(ALL:ALL) ALL
+sp-user ALL=(ALL:ALL) NOPASSWD: ALL
+logout
+sudo su sp-user #must be no password!!!
+
+**********************node_1*******************************
+cd ~
+ssh-keygen
+ssh-copy-id -i ~/.ssh/id_rsa.pub sp-user@<node_2>
+Enter passwd
+
+**********************node_2********************************
+cd ~
+ssh-keygen
+ssh-copy-id -i ~/.ssh/id_rsa.pub sp-user@<node_1> 
+Enter passwd
+
+```
 
 ####Resources
 [PySpark Tutorial](https://sparkbyexamples.com/pyspark-tutorial/)
