@@ -74,22 +74,25 @@ sudo nano /etc/hosts
 <IP> sp-master
 <IP> sp-slave1
 <IP> sp-slave2
-#
-sudo nano ~/.bashrc
+############## засунуть в ансибл
+sudo nano /home/sp-user/.bashrc
 export PATH=$PATH:/home/sp-user/spark/bin
-source ~/.bashrc
-#
-#cd /usr/local/spark/conf
-sudo cp /home/sp-user/spark/conf/spark-env.sh.template spark-env.sh
-sudo nano spark-env.sh
+source /home/sp-user/.bashrc
+##############
+
+############add slave (засуть в ансибл)
+sudo chmod 777 /home/sp-user/spark/conf
+sudo chmod 777 /home/sp-user/spark
+cp /home/sp-user/spark/conf/spark-env.sh.template spark-env.sh
+##############
+nano spark-env.sh
 #add to end line on the file
 export SPARK_MASTER_HOST=<IP internal>
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-#add slave
-sudo nano /home/sp-user/spark/conf/slaves
+#(засуть в ансибл)
+nano /home/sp-user/spark/conf/slaves
 sp-slave1
 sp-slave2
-```
 
 ####On Master only
 ```BASH
@@ -101,44 +104,39 @@ jps
 
 ####For test
 ```BASH
-****************node_1*********************************
-
+#All node
 sudo adduser sp-user
 sudo usermod -aG sudo sp-user
-su sp-user    # sudo su sp-user 
-
-#no password
-sudo nano /etc/sudoers
-sp-user ALL=(ALL:ALL) ALL<>
-sp-user ALL=(ALL:ALL) NOPASSWD: ALL
-logout
-sudo su sp-user #must be no password!!!  
-
-
-****************node_2*********************************
-sudo adduser sp-user
-sudo usermod -aG sudo sp-user
-su sp-user   # sudo su sp-user
-
+su sp-user 
 #no password
 sudo nano /etc/sudoers
 sp-user ALL=(ALL:ALL) ALL
 sp-user ALL=(ALL:ALL) NOPASSWD: ALL
-logout
-sudo su sp-user #must be no password!!!
+exit
+sudo su sp-user #must be no password!!!  
 
-**********************node_1*******************************
+#node_1
+sudo su sp-user
 cd ~
 ssh-keygen
+ssh-copy-id -i ~/.ssh/id_rsa.pub sp-user@<node_1>
+ssh-copy-id -i ~/.ssh/id_rsa.pub sp-user@<node_2>
+ssh-copy-id -i ~/.ssh/id_rsa.pub sp-user@<node_3>
+Enter passwd
+
+#node_2
+cd ~
+ssh-keygen
+ssh-copy-id -i ~/.ssh/id_rsa.pub sp-user@<node_1>
+ssh-copy-id -i ~/.ssh/id_rsa.pub sp-user@<node_3>
+Enter passwd
+
+#node_3
+cd ~
+ssh-keygen
+ssh-copy-id -i ~/.ssh/id_rsa.pub sp-user@<node_1>
 ssh-copy-id -i ~/.ssh/id_rsa.pub sp-user@<node_2>
 Enter passwd
-
-**********************node_2********************************
-cd ~
-ssh-keygen
-ssh-copy-id -i ~/.ssh/id_rsa.pub sp-user@<node_1> 
-Enter passwd
-
 ```
 
 ####Resources
