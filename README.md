@@ -85,7 +85,7 @@ sudo chmod 777 /home/sp-user/spark/conf
 sudo chmod 777 /home/sp-user/spark
 cp /home/sp-user/spark/conf/spark-env.sh.template spark-env.sh
 ##############
-nano spark-env.sh
+nano /home/sp-user/spark/conf/spark-env.sh
 #add to end line on the file
 export SPARK_MASTER_HOST=<IP internal>
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
@@ -102,7 +102,7 @@ cd /home/sp-user/spark
 jps
 ```
 
-####For test
+####Create User for ssh
 ```BASH
 #All node
 sudo adduser sp-user
