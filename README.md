@@ -83,7 +83,7 @@ source /home/sp-user/.bashrc
 ############add slave (засуть в ансибл)
 sudo chmod 777 /home/sp-user/spark/conf
 sudo chmod 777 /home/sp-user/spark
-cp /home/sp-user/spark/conf/spark-env.sh.template spark-env.sh
+cp /home/sp-user/spark/conf/spark-env.sh.template /home/sp-user/spark/conf/spark-env.sh
 ##############
 nano /home/sp-user/spark/conf/spark-env.sh
 #add to end line on the file
@@ -102,18 +102,24 @@ cd /home/sp-user/spark
 jps
 ```
 
+###Run pyspark task
+```BASH
+spark-submit --master spark://10.128.0.9:7077 /home/sp-user/spark/examples/src/main/python/pi.py 1000
+```
+
+
 ####Create User for ssh
 ```BASH
 #All node
 sudo adduser sp-user
 sudo usermod -aG sudo sp-user
-su sp-user 
+#su sp-user 
 #no password
 sudo nano /etc/sudoers
 sp-user ALL=(ALL:ALL) ALL
 sp-user ALL=(ALL:ALL) NOPASSWD: ALL
-exit
-sudo su sp-user #must be no password!!!  
+#exit
+#sudo su sp-user #must be no password!!!  
 
 #node_1
 sudo su sp-user
@@ -142,3 +148,5 @@ Enter passwd
 ####Resources
 [PySpark Tutorial](https://sparkbyexamples.com/pyspark-tutorial/)
 [PySpark join two dataframes](https://www.geeksforgeeks.org/pyspark-join-types-join-two-dataframes/)
+
+
