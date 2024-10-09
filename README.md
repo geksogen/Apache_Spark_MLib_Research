@@ -89,7 +89,7 @@ nano /home/sp-user/spark/conf/spark-env.sh
 #add to end line on the file
 export SPARK_MASTER_HOST=<IP internal>
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-#(засуть в ансибл)
+#(засуть в ансибл) в тесте
 nano /home/sp-user/spark/conf/slaves
 sp-slave1
 sp-slave2
