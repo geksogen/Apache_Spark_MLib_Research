@@ -37,10 +37,10 @@
       sp-user ALL=(ALL:ALL) NOPASSWD: ALL
   become: true
 
-- name: Download Spark
-  ansible.builtin.get_url:
-    url: https://archive.apache.org/dist/spark/spark-3.1.1/spark-3.1.1-bin-hadoop3.2.tgz
-    dest: /home/student
+#- name: Download Spark
+#  ansible.builtin.get_url:
+#    url: https://archive.apache.org/dist/spark/spark-3.1.1/spark-3.1.1-bin-hadoop3.2.tgz
+#    dest: /home/student
 
 - name: Unzip Spark
   shell: "tar xvf spark-3.1.1-bin-hadoop3.2.tgz"

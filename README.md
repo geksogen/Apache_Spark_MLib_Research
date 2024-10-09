@@ -83,7 +83,7 @@ source /home/sp-user/.bashrc
 ############add slave (засуть в ансибл)
 sudo chmod 777 /home/sp-user/spark/conf
 sudo chmod 777 /home/sp-user/spark
-cp /home/sp-user/spark/conf/spark-env.sh.template /home/sp-user/spark/conf/spark-env.sh
+cp /home/sp-user/spark/conf/spark-env.sh.template /home/sp-user/spark/conf/spark-env.sh # add to ansible
 ##############
 nano /home/sp-user/spark/conf/spark-env.sh
 #add to end line on the file
