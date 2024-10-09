@@ -70,9 +70,8 @@
 
 - name: add slave node
   blockinfile:
-    dest: "/home/sp-user/spark/conf/slaves"
-    insertafter: EOF
-    block: |
-      # environment variable exports
-      sp-slave1
-      sp-slave2
+    copy:
+      dest: "/home/sp-user/spark/conf/slaves"
+      content: |
+        sp-slave1
+        sp-slave2
