@@ -46,9 +46,9 @@
   shell: "tar xvf spark-3.1.1-bin-hadoop3.2.tgz"
   become: true
 
-- name: Create home dir for Spark
-  shell: "mv spark-3.1.1-bin-hadoop3.2 /home/sp-user/spark"
-  become: true
+#- name: Create home dir for Spark
+#  shell: "mv spark-3.1.1-bin-hadoop3.2 /home/sp-user/spark"
+#  become: true
 
 - name: append environment variables to the end of .bashrc file
   blockinfile:
