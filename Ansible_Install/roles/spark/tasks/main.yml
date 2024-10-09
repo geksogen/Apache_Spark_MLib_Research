@@ -77,3 +77,8 @@
     path: /home/sp-user/spark
     mode: 0777
     recurse: yes
+
+- name: Copy template env config
+  ansible.builtin.copy:
+    src: /home/sp-user/spark/conf/spark-env.sh.template
+    dest: /home/sp-user/spark/conf/spark-env.sh
