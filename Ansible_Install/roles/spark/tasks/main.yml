@@ -62,3 +62,4 @@
 
 - name: Save bashrc
   shell: "source /home/sp-user/.bashrc"
+  become: true
