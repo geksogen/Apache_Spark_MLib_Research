@@ -58,6 +58,7 @@
     block: |
       # environment variable exports
       export PATH="$PATH:/home/sp-user/spark/bin";
+  become: true
 
 - name: Save bashrc
   shell: "source /home/sp-user/.bashrc"
