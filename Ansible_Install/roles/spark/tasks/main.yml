@@ -40,15 +40,15 @@
 - name: Download Spark
   ansible.builtin.get_url:
     url: https://archive.apache.org/dist/spark/spark-3.1.1/spark-3.1.1-bin-hadoop3.2.tgz
-    dest: /home/student
+    dest: /home/sp-user
 
 - name: Unzip Spark
   shell: "tar xvf spark-3.1.1-bin-hadoop3.2.tgz"
-  become: true
+  #become: true
 
 - name: Create home dir for Spark
   shell: "mv spark-3.1.1-bin-hadoop3.2 /home/sp-user/spark"
-  become: true
+  #become: true
 
 - name: append environment variables to the end of .bashrc file
   blockinfile:
@@ -64,16 +64,16 @@
   args:
     executable: /bin/bash
 
-#- name: add slave node
-#  blockinfile:
-#    copy:
-#      dest: "/home/sp-user/spark/conf/slaves"
-#      content: |
-#        sp-slave1
-#        sp-slave2
 
-- copy:
+- name: Add slave host
+  copy:
       content: |
-                sp-slave1
-                sp-slave2
+        sp-slave1
+        sp-slave2
       dest: /home/sp-user/spark/conf/slaves
+
+- name: Set chmod 777 to Spark work dir
+  file:
+    path: /home/sp-user/spark
+    mode: 0777
+    recurse: yes
