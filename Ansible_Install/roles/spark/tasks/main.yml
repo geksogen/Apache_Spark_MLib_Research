@@ -13,26 +13,48 @@
   shell: "apt-get install scala -y"
   become: true
 
-- name: Download Spark
-  ansible.builtin.get_url:
-    url: https://archive.apache.org/dist/spark/spark-3.1.1/spark-3.1.1-bin-hadoop3.2.tgz
-    dest: /home/student
+- name: Create sp-user
+  user:
+    name: sp-user
+    password: "{{ '123' | password_hash('sha512') }}"
+    shell: /bin/bash
+    state: present
 
-- name: Unzip Spark
-  shell: "tar xvf spark-3.1.1-bin-hadoop3.2.tgz"
-  become: true
+- name: Add user to sudo group
+  user:
+    name: username
+    groups: sudo
+    append: yes
 
-- name: Create home dir for Spark
-  shell: "mv spark-3.1.1-bin-hadoop3.2 /home/sp-user/spark"
-  become: true
+- name: Allow passwordless sudo for the user
+  blockinfile:
+    dest: "/etc/sudoers"
+    insertafter: EOF
+    block: |
+      # environment variable exports
+      sp-user ALL=(ALL:ALL) ALL
+      sp-user ALL=(ALL:ALL) NOPASSWD: ALL
 
-#- name: Update bashrc
-#  lineinfile:
-#    dest: /home/root/.bashrc
-#    regexp: '^#fi'
-#    line: "PATH=$PATH:/usr/local/spark/bin"
+#- name: Download Spark
+#  ansible.builtin.get_url:
+#    url: https://archive.apache.org/dist/spark/spark-3.1.1/spark-3.1.1-bin-hadoop3.2.tgz
+#    dest: /home/student
 
+#- name: Unzip Spark
+#  shell: "tar xvf spark-3.1.1-bin-hadoop3.2.tgz"
+#  become: true
 
+#- name: Create home dir for Spark
+#  shell: "mv spark-3.1.1-bin-hadoop3.2 /home/sp-user/spark"
+#  become: true
 
+- name: append environment variables to the end of .bashrc file
+  blockinfile:
+    dest: "/home/sp-user/.bashrc"
+    insertafter: EOF
+    block: |
+      # environment variable exports
+      export PATH="$PATH:/home/sp-user/spark/bin";
 
-#~/.profile
+- name: Save bashrc
+  shell: "source /home/sp-user/.bashrc"

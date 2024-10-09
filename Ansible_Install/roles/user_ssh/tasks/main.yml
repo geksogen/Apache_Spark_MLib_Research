@@ -15,11 +15,11 @@
 
 
 - name: Create User
-      ansible.builtin.user:
-        name: "{{ username }}"
-        state: present
-        shell: /bin/bash
-        password: "{{ userpass | password_hash('sha512') }}"
-        update_password: on_create
-        groups: "{{ super_group }}"
-        append: yes
+  ansible.builtin.user:
+    name: "{{ username }}"
+    state: present
+    shell: /bin/bash
+    password: test
+    update_password: on_create
+    groups: sudo
+    append: yes

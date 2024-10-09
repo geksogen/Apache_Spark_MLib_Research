@@ -74,7 +74,7 @@ sudo nano /etc/hosts
 <IP> sp-master
 <IP> sp-slave1
 <IP> sp-slave2
-############## засунуть в ансибл
+############## засунуть в ансибл в тесте
 sudo nano /home/sp-user/.bashrc
 export PATH=$PATH:/home/sp-user/spark/bin
 source /home/sp-user/.bashrc
@@ -104,7 +104,11 @@ jps
 
 ###Run pyspark task
 ```BASH
+sudo su sp-user
 spark-submit --master spark://10.128.0.9:7077 /home/sp-user/spark/examples/src/main/python/pi.py 1000
+git clone https://github.com/geksogen/Apache_Spark_MLib_Research.git
+cd Python
+spark-submit --master spark://10.128.0.9:7077 
 ```
 
 
