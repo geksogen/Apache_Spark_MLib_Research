@@ -1,5 +1,4 @@
 # export ANSIBLE_HOST_KEY_CHECKING=False
-# apt update
 - name: Run the equivalent of "apt-get update"
   apt:
      update_cache: yes
@@ -65,10 +64,16 @@
   args:
     executable: /bin/bash
 
-- name: add slave node
-  blockinfile:
-    copy:
-      dest: "/home/sp-user/spark/conf/slaves"
+#- name: add slave node
+#  blockinfile:
+#    copy:
+#      dest: "/home/sp-user/spark/conf/slaves"
+#      content: |
+#        sp-slave1
+#        sp-slave2
+
+- copy:
       content: |
-        sp-slave1
-        sp-slave2
+                sp-slave1
+                sp-slave2
+      dest: /home/sp-user/spark/conf/slaves
