@@ -19,6 +19,7 @@
     password: "{{ '123' | password_hash('sha512') }}"
     shell: /bin/bash
     state: present
+  become: true
 
 - name: Add user to sudo group
   user:
