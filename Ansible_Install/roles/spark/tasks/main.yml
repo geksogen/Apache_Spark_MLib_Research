@@ -62,5 +62,8 @@
 
 - name: Save bashrc
   #shell: "source /home/sp-user/.bashrc"
-  action: shell source /home/sp-user/.bashrc
-  become: true
+  #action: shell source /home/sp-user/.bashrc
+  #become: true
+  shell: source /home/sp-user/.bashrc
+  args:
+    executable: /bin/bash
