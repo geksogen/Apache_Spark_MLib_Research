@@ -82,3 +82,4 @@
   ansible.builtin.copy:
     src: /home/sp-user/spark/conf/spark-env.sh.template
     dest: /home/sp-user/spark/conf/spark-env.sh
+  become: true
