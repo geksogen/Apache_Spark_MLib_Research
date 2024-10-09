@@ -38,18 +38,18 @@
       sp-user ALL=(ALL:ALL) NOPASSWD: ALL
   become: true
 
-#- name: Download Spark
-#  ansible.builtin.get_url:
-#    url: https://archive.apache.org/dist/spark/spark-3.1.1/spark-3.1.1-bin-hadoop3.2.tgz
-#    dest: /home/student
+- name: Download Spark
+  ansible.builtin.get_url:
+    url: https://archive.apache.org/dist/spark/spark-3.1.1/spark-3.1.1-bin-hadoop3.2.tgz
+    dest: /home/student
 
-#- name: Unzip Spark
-#  shell: "tar xvf spark-3.1.1-bin-hadoop3.2.tgz"
-#  become: true
+- name: Unzip Spark
+  shell: "tar xvf spark-3.1.1-bin-hadoop3.2.tgz"
+  become: true
 
-#- name: Create home dir for Spark
-#  shell: "mv spark-3.1.1-bin-hadoop3.2 /home/sp-user/spark"
-#  become: true
+- name: Create home dir for Spark
+  shell: "mv spark-3.1.1-bin-hadoop3.2 /home/sp-user/spark"
+  become: true
 
 - name: append environment variables to the end of .bashrc file
   blockinfile:
@@ -61,9 +61,6 @@
   become: true
 
 - name: Save bashrc
-  #shell: "source /home/sp-user/.bashrc"
-  #action: shell source /home/sp-user/.bashrc
-  #become: true
   shell: source /home/sp-user/.bashrc
   args:
     executable: /bin/bash
