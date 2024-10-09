@@ -37,18 +37,18 @@
       sp-user ALL=(ALL:ALL) NOPASSWD: ALL
   become: true
 
-#- name: Download Spark
-#  ansible.builtin.get_url:
-#    url: https://archive.apache.org/dist/spark/spark-3.1.1/spark-3.1.1-bin-hadoop3.2.tgz
-#    dest: /home/student
+- name: Download Spark
+  ansible.builtin.get_url:
+    url: https://archive.apache.org/dist/spark/spark-3.1.1/spark-3.1.1-bin-hadoop3.2.tgz
+    dest: /home/student
 
 - name: Unzip Spark
   shell: "tar xvf spark-3.1.1-bin-hadoop3.2.tgz"
   become: true
 
-#- name: Create home dir for Spark
-#  shell: "mv spark-3.1.1-bin-hadoop3.2 /home/sp-user/spark"
-#  become: true
+- name: Create home dir for Spark
+  shell: "mv spark-3.1.1-bin-hadoop3.2 /home/sp-user/spark"
+  become: true
 
 - name: append environment variables to the end of .bashrc file
   blockinfile:
@@ -64,7 +64,6 @@
   args:
     executable: /bin/bash
 
-
 - name: Add slave host
   copy:
       content: |
@@ -78,8 +77,8 @@
     mode: 0777
     recurse: yes
 
-- name: Copy template env config
-  ansible.builtin.copy:
-    src: /home/sp-user/spark/conf/spark-env.sh.template
-    dest: /home/sp-user/spark/conf/spark-env.sh
-  become: true
+#- name: Copy template env config
+#  ansible.builtin.copy:
+#    src: /home/sp-user/spark/conf/spark-env.sh.template
+#    dest: /home/sp-user/spark/conf/spark-env.sh
+#  become: true
