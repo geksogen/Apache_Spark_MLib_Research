@@ -26,6 +26,7 @@
     name: username
     groups: sudo
     append: yes
+  become: true
 
 - name: Allow passwordless sudo for the user
   blockinfile:
@@ -35,6 +36,7 @@
       # environment variable exports
       sp-user ALL=(ALL:ALL) ALL
       sp-user ALL=(ALL:ALL) NOPASSWD: ALL
+  become: true
 
 #- name: Download Spark
 #  ansible.builtin.get_url:
