@@ -32,6 +32,7 @@ if __name__ == "__main__":
     sc.addFile(data_file_https_url)
     filePath = 'file://' + SparkFiles.get('cities_data_bank.csv')
     citiesDf = sc.textFile(filePath)
-    citiesDf.top(5)
+    for row in citiesDf:
+        print(row[0] + "," + str(row[1]))
 
     sc.stop()
