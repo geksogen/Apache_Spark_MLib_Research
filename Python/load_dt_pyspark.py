@@ -41,7 +41,11 @@ if __name__ == "__main__":
     spark_df_1 = spark.createDataFrame(pd_df_1)
     spark_df_2 = spark.createDataFrame(pd_df_2)
 
-    spark_df_1.limit(5).show()
-    spark_df_2.limit(5).show()
+    #spark_df_1.limit(5).show()
+    #spark_df_2.limit(5).show()
+
+    spark_df_1.join(spark_df_2,
+                   spark_df_1.u_id == spark_df_2.u_id,
+                   "inner").show(5)
 
     spark.stop()
