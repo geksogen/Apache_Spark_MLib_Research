@@ -12,14 +12,13 @@ if __name__ == "__main__":
     """
         Usage:
     """
-    spark = SparkSession\
-        .builder\
-        .appName("Join two dataframe")\
-        .getOrCreate()
+    conf = SparkConf().setAppName('join inner')
+                    .set('spark.executor.memory', '2g')
+    spark = SparkSession.builder.config(conf=conf).getOrCreate()
     # ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN
     spark.sparkContext.setLogLevel('WARN')
 
-    SIZE_DATAFRAME = 100000
+    SIZE_DATAFRAME = 10000
     list_index = sample(range(1, SIZE_DATAFRAME + 1), SIZE_DATAFRAME)
     list_value_df_2 = ['IT', 'Logistic', 'Legal']
 

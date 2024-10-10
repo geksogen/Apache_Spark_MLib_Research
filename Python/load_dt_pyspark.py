@@ -21,6 +21,4 @@ if __name__ == "__main__":
     df_sp_2 = spark.read.options(inferSchema='True',delimiter=',') \
                             .csv("./data_frame_2.csv")
 
-    df.printSchema()
-
     spark.stop()
