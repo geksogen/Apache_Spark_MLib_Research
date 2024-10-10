@@ -1,5 +1,5 @@
 import sys
-from random import random
+import random
 from operator import add
 import pandas as pd
 from pyspark.sql import SparkSession
@@ -46,7 +46,7 @@ def data_generator_2():
 
 if __name__ == "__main__":
     """
-        Usage: pi [partitions]
+        Usage:
     """
     spark = SparkSession\
         .builder\
