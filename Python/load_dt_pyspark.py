@@ -27,6 +27,5 @@ if __name__ == "__main__":
     #df = spark.read.format("csv").option("header", "true").load("file:///home/sp-user/data_frame_1.csv")
     #df = spark.read.csv('file://" + spark.SparkFiles.get("data_frame_1.csv")')
     #df.show()
-    spark.addFile("data_frame_1.csv")
     print ("Absolute Path -> %s", spark.SparkFiles.get("data_frame_1.csv"))
     spark.stop()
