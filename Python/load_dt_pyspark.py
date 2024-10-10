@@ -8,7 +8,7 @@ import os
 current_dir = os.path.dirname(__file__)
 relative_path = "data_frame_1.csv"
 absolute_file_path = os.path.join(current_dir, relative_path)
-petch = "file:///data_frame_1.csv"
+petch = "file://data_frame_1.csv"
 
 if __name__ == "__main__":
     """
@@ -21,5 +21,6 @@ if __name__ == "__main__":
 
 
     # Load DATA from csv
-    df_sp_1 = spark.read.csv(header=True, inferSchema=True, path=petch)
+    #df_sp_1 = spark.read.csv(header=True, inferSchema=True, path=petch)
+    df = spark.read.format("csv").option("header", "true").load("file://data_frame_1.csv")
     spark.stop()
