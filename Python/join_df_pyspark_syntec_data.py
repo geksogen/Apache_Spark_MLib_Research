@@ -40,4 +40,6 @@ if __name__ == "__main__":
         pd_dataframe_1 = pd.DataFrame(temp_list_1)
         pd_dataframe_2 = pd.DataFrame(temp_list_2)
 
+    print('OK')
+
     spark.stop()
