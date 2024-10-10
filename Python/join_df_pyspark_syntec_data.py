@@ -17,7 +17,7 @@ if __name__ == "__main__":
         .appName("Join two dataframe")\
         .getOrCreate()
 
-    SIZE_DATAFRAME = 10
+    SIZE_DATAFRAME = 5
     list_index = sample(range(1, SIZE_DATAFRAME + 1), SIZE_DATAFRAME)
     list_value_df_2 = ['IT', 'Logistic', 'Legal']
 
@@ -40,7 +40,14 @@ if __name__ == "__main__":
         pd_dataframe_1 = pd.DataFrame(temp_list_1)
         pd_dataframe_2 = pd.DataFrame(temp_list_2)
 
-    print(pd_dataframe_1.tail(5))
-    print(pd_dataframe_2.tail(5))
+
+
+    sparkDF_1=spark.createDataFrame(pd_dataframe_1)
+    sparkDF_1.printSchema()
+    sparkDF_1.show()
+
+    sparkDF_2=spark.createDataFrame(pd_dataframe_2)
+    sparkDF_2.printSchema()
+    sparkDF_2.show()
 
     spark.stop()
