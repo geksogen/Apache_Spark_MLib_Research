@@ -16,6 +16,7 @@ if __name__ == "__main__":
         .builder\
         .appName("Join two dataframe")\
         .getOrCreate()
+    spark.sparkContext.setLogLevel('warn')
 
     SIZE_DATAFRAME = 5
     list_index = sample(range(1, SIZE_DATAFRAME + 1), SIZE_DATAFRAME)
