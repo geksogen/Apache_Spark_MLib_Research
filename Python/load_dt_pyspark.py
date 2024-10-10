@@ -21,5 +21,5 @@ if __name__ == "__main__":
 
 
     # Load DATA from csv
-    df_sp_1 = spark.read.csv(header=True, inferSchema=True, path=absolute_file_path)
+    df_sp_1 = spark.read.csv(header=True, inferSchema=True, path=petch)
     spark.stop()
