@@ -51,6 +51,9 @@ if __name__ == "__main__":
     sparkDF_1=spark.createDataFrame(pd_dataframe_1)
     sparkDF_2=spark.createDataFrame(pd_dataframe_2)
 
+    sparkDF_1.show(5)
+    sparkDF_2.show(5)
+
     # Inner join sparkDF_1 + sparkDF_2
     sparkDF_1.join(sparkDF_2,
                sparkDF_1.u_id == sparkDF_2.u_id,
