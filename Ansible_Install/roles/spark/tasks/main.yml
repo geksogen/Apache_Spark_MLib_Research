@@ -4,6 +4,17 @@
      update_cache: yes
   become: true
 
+- name: Add IP to hosts file
+  blockinfile:
+    dest: "/etc/hosts"
+    insertafter: EOF
+    block: |
+      # Spark cluster, Public IP
+      62.84.125.93   sp-master
+      89.169.159.93  sp-slave1
+      89.169.148.115 sp-slave2
+  become: true
+
 - name: Java install
   shell: "apt install openjdk-8-jdk -y"
   become: true
