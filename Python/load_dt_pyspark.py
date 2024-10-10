@@ -23,5 +23,5 @@ if __name__ == "__main__":
     # Load DATA from csv
     #df_sp_1 = spark.read.csv(header=True, inferSchema=True, path=petch)
     df = spark.read.format("csv").option("header", "true").load("file:///home/sp-user/Apache_Spark_MLib_Research/Python/data_frame_1.csv")
-    #print(absolute_file_path)
+    df.show()
     spark.stop()
