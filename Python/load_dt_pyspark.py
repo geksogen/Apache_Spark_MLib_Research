@@ -6,7 +6,7 @@ from pyspark.sql import SparkSession
 import os
 
 current_dir = os.path.dirname(__file__)
-relative_path = "./data_frame_1.csv"
+relative_path = "data_frame_1.csv"
 absolute_file_path = os.path.join(current_dir, relative_path)
 
 if __name__ == "__main__":
