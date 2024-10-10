@@ -32,6 +32,8 @@ if __name__ == "__main__":
     url_github = 'https://raw.githubusercontent.com/geksogen/Apache_Spark_MLib_Research/refs/heads/master/Python/data_frame_1.csv'
 
     pd_df = pd.read_csv(url_github)
+    pd_df.iteritems = pd_df.items
+
     spark_df = spark.createDataFrame(pd_df)
 
     spark_df.limit(5).show()
