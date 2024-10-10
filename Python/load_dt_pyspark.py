@@ -29,13 +29,19 @@ if __name__ == "__main__":
     #df = spark.read.csv('https://raw.githubusercontent.com/geksogen/Apache_Spark_MLib_Research/refs/heads/master/Python/data_frame_1.csv')
     #df.show(10)
 
-    url_github = 'https://raw.githubusercontent.com/geksogen/Apache_Spark_MLib_Research/refs/heads/master/Python/data_frame_1.csv'
+    url_github_1 = 'https://raw.githubusercontent.com/geksogen/Apache_Spark_MLib_Research/refs/heads/master/Python/data_frame_1.csv'
+    url_github_2 = 'https://raw.githubusercontent.com/geksogen/Apache_Spark_MLib_Research/refs/heads/master/Python/data_frame_2.csv'
 
-    pd_df = pd.read_csv(url_github)
-    pd_df.iteritems = pd_df.items
+    pd_df_1 = pd.read_csv(url_github_1)
+    pd_df_1.iteritems = pd_df_1.items
 
-    spark_df = spark.createDataFrame(pd_df)
+    pd_df_2 = pd.read_csv(url_github_2)
+    pd_df_2.iteritems = pd_df_2.items
 
-    spark_df.limit(5).show()
+    spark_df_1 = spark.createDataFrame(pd_df_1)
+    spark_df_2 = spark.createDataFrame(pd_df_2)
+
+    spark_df_1.limit(5).show()
+    spark_df_2.limit(5).show()
 
     spark.stop()
