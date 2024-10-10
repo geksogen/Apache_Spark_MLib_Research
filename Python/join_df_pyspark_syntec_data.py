@@ -19,7 +19,7 @@ if __name__ == "__main__":
     # ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN
     spark.sparkContext.setLogLevel('WARN')
 
-    SIZE_DATAFRAME = 5
+    SIZE_DATAFRAME = 1000
     list_index = sample(range(1, SIZE_DATAFRAME + 1), SIZE_DATAFRAME)
     list_value_df_2 = ['IT', 'Logistic', 'Legal']
 
@@ -57,6 +57,6 @@ if __name__ == "__main__":
     # Inner join sparkDF_1 + sparkDF_2
     sparkDF_1.join(sparkDF_2,
                sparkDF_1.u_id == sparkDF_2.u_id,
-               "inner").show()
+               "inner").show(5)
 
     spark.stop()
