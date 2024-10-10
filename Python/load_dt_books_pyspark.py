@@ -13,7 +13,7 @@ absolute_file_path = os.path.join(current_dir, relative_path)
 session = SparkSession.builder.appName("CSV to Dataset").master("spark://10.128.0.107:7077").getOrCreate()
 
 # Reads a CSV file with header, called books.csv, stores it in a dataframe
-df = session.read.csv(header=True, inferSchema=True, path=absolute_file_path)
+df = session.read.csv(header=True, inferSchema=True, path="books.csv")
 
 # Shows at most 5 rows from the dataframe
 df.show(5)
