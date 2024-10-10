@@ -22,6 +22,6 @@ if __name__ == "__main__":
 
     # Load DATA from csv
     #df_sp_1 = spark.read.csv(header=True, inferSchema=True, path=petch)
-    df = spark.read.format("csv").option("header", "true").load("file:///home/sp-user/spark/work/app-20241010144608-0047/1/data_frame_1.csv")
+    df = spark.read.format("csv").option("header", "true").load("data_frame_1.csv")
     df.show()
     spark.stop()
