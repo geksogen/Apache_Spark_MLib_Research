@@ -29,7 +29,7 @@ if __name__ == "__main__":
     #df = spark.read.csv('https://raw.githubusercontent.com/geksogen/Apache_Spark_MLib_Research/refs/heads/master/Python/data_frame_1.csv')
     #df.show(10)
 
-    url_github = 'https://raw.githubusercontent.com/AISCIENCES/course-master-big-data-with-pyspark-and-aws/main/Code/03-Spark%20DFs/StudentData.csv'
+    url_github = 'https://raw.githubusercontent.com/geksogen/Apache_Spark_MLib_Research/refs/heads/master/Python/data_frame_1.csv'
 
     pd_df = pd.read_csv(url_github)
     spark_df = spark.createDataFrame(pd_df)
