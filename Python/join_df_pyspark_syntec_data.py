@@ -42,11 +42,14 @@ if __name__ == "__main__":
 
 
 
-    sparkDF_1=spark.createDataFrame(temp_list_1)
+    pd_dataframe_1.iteritems = pd_dataframe_1.items
+    pd_dataframe_2.iteritems = pd_dataframe_2.items
+
+    sparkDF_1=spark.createDataFrame(pd_dataframe_1)
     sparkDF_1.printSchema()
     sparkDF_1.show()
 
-    sparkDF_2=spark.createDataFrame(temp_list_2)
+    sparkDF_2=spark.createDataFrame(pd_dataframe_2)
     sparkDF_2.printSchema()
     sparkDF_2.show()
 
