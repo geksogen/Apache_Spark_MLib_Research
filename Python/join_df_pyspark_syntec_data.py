@@ -12,9 +12,10 @@ if __name__ == "__main__":
     """
         Usage:
     """
-    conf = SparkConf().setAppName('join inner')
-                    .set('spark.executor.memory', '2g')
-    spark = SparkSession.builder.config(conf=conf).getOrCreate()
+    spark = SparkSession\
+        .builder\
+        .appName("Join two dataframe")\
+        .getOrCreate()
     # ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN
     spark.sparkContext.setLogLevel('WARN')
 
