@@ -23,7 +23,7 @@ if __name__ == "__main__":
     #    .getOrCreate()
 
     # Create a SparkConf object to configure the application
-    conf = SparkConf().setAppName("SparkContextExample").setMaster("local[*]")
+    conf = SparkConf().setAppName("SparkContextExample").setMaster("spark://62.84.125.93:7077")
 
     # Create a SparkContext object
     sc = SparkContext(conf=conf)
