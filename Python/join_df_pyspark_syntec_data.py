@@ -53,7 +53,7 @@ if __name__ == "__main__":
 
     # Inner join sparkDF_1 + sparkDF_2
     sparkDF_1.join(sparkDF_2,
-               sparkDF_1.ID == sparkDF_2.ID,
+               sparkDF_1.u_id == sparkDF_2.u_id,
                "inner").show()
 
     spark.stop()
