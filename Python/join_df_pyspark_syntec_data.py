@@ -47,12 +47,13 @@ if __name__ == "__main__":
     pd_dataframe_1.iteritems = pd_dataframe_1.items
     pd_dataframe_2.iteritems = pd_dataframe_2.items
 
+    # Create Spark datafram's
     sparkDF_1=spark.createDataFrame(pd_dataframe_1)
-    sparkDF_1.printSchema()
-    sparkDF_1.show()
-
     sparkDF_2=spark.createDataFrame(pd_dataframe_2)
-    sparkDF_2.printSchema()
-    sparkDF_2.show()
+
+    # Inner join sparkDF_1 + sparkDF_2
+    sparkDF_1.join(sparkDF_2,
+               sparkDF_1.ID == sparkDF_2.ID,
+               "inner").show()
 
     spark.stop()
