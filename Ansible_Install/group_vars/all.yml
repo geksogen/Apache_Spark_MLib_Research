@@ -1,8 +1,4 @@
-# Account name of remote user. Ansible will use this user account to ssh into
-# the managed machines. The user must be able to use sudo without asking
-# for password.
-#nsible_connection: ssh
-#ansible_user: student
+---
+# vars for
 
-#gather_facts: True
-#gathering: smart
+
