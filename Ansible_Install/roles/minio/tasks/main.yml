@@ -28,11 +28,11 @@
 
 - name: Download Minio
   ansible.builtin.get_url:
-    url: https://dl.min.io/server/minio/release/linux-amd64/minio_20220523184511.0.0_amd64.deb
+    url: https://dl.min.io/server/minio/release/linux-amd64/minio_20241013133411.0.0_amd64.deb
     dest: ~/
 
 - name: Install Minio
-  shell: "dpkg -i minio_20220523184511.0.0_amd64.deb"
+  shell: "dpkg -i minio_20241013133411.0.0_amd64.deb"
   become: true
 
 - name: config Minio
