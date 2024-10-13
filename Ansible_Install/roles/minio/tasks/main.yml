@@ -1,0 +1,53 @@
+- name: Run the equivalent of "apt-get update"
+  apt:
+     update_cache: yes
+  become: true
+
+- name: Create Minio group
+  group:
+    name: minio
+    state: present
+
+- name: Create Minio user
+  user:
+    name: minio
+    group: minio
+    system: "yes"
+    shell: "/usr/sbin/nologin"
+
+- name: Create the Minio data storage directories
+  file:
+    path: "/usr/local/share/minio"
+    state: directory
+    owner: minio
+    group: minio
+    mode: 0750
+
+- name: Download Minio
+  ansible.builtin.get_url:
+    url: https://dl.min.io/server/minio/release/linux-amd64/minio_20220523184511.0.0_amd64.deb
+    dest: ~/
+
+- name: Install Minio
+  shell: "dpkg -i minio_20220523184511.0.0_amd64.deb"
+  become: true
+
+- name: config Minio
+  blockinfile:
+    dest: "/etc/default/minio"
+    insertafter: EOF
+    block: |
+      # environment variable exports
+      MINIO_ACCESS_KEY="minio"
+      MINIO_VOLUMES="/usr/local/share/minio/"
+      MINIO_OPTS="-C /etc/minio --89.169.131.36:9000"
+      MINIO_SECRET_KEY="miniostorage"
+  become: true
+
+- name: Start Minio
+  shell: "systemctl start minio"
+  become: true
+
+- name: Enable Minio
+  shell: "systemctl enable minio"
+  become: true
