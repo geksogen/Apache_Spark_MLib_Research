@@ -7,6 +7,7 @@
   group:
     name: minio
     state: present
+  become: true
 
 - name: Create Minio user
   user:
@@ -14,6 +15,7 @@
     group: minio
     system: "yes"
     shell: "/usr/sbin/nologin"
+  become: true
 
 - name: Create the Minio data storage directories
   file:
@@ -22,6 +24,7 @@
     owner: minio
     group: minio
     mode: 0750
+  become: true
 
 - name: Download Minio
   ansible.builtin.get_url:
