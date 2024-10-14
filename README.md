@@ -153,5 +153,4 @@ Enter passwd
 [PySpark Tutorial](https://sparkbyexamples.com/pyspark-tutorial/)
 [PySpark join two dataframes](https://www.geeksforgeeks.org/pyspark-join-types-join-two-dataframes/)
 [Spark Standalone on Docker-Compose](https://dev.to/mvillarrealb/creating-a-spark-standalone-cluster-with-docker-and-docker-compose-2021-update-6l4)
-
-https://www.youtube.com/watch?v=78G3Jf9Fa64
+[Install Minio](https://www.digitalocean.com/community/tutorials/how-to-set-up-minio-object-storage-server-in-standalone-mode-on-ubuntu-20-04)

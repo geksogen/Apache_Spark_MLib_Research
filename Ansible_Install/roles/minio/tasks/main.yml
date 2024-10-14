@@ -2,22 +2,27 @@
   apt:
      update_cache: yes
   become: true
+  when: inventory_hostname in groups["Minio_hosts"]
 
 - name: Create Group
   shell: "sudo groupadd -r minio-user"
   become: true
+  when: inventory_hostname in groups["Minio_hosts"]
 
 - name: Create User
   shell: "sudo useradd -M -r -g minio-user minio-user"
   become: true
+  when: inventory_hostname in groups["Minio_hosts"]
 
 - name: Create Minio data directory
   shell: "sudo mkdir /mnt/data"
   become: true
+  when: inventory_hostname in groups["Minio_hosts"]
 
 - name: Grant Access
   shell: "sudo chown minio-user:minio-user /mnt/data"
   become: true
+  when: inventory_hostname in groups["Minio_hosts"]
 
 - name: Config Minio
   copy:
@@ -28,16 +33,20 @@
         MINIO_ROOT_PASSWORD=minioadmin123
       dest: "/etc/default/minio"
   become: true
+  when: inventory_hostname in groups["Minio_hosts"]
 
 - name: Download Minio
   ansible.builtin.get_url:
     url: https://dl.min.io/server/minio/release/linux-amd64/minio_20241013133411.0.0_amd64.deb
     dest: ~/
+  when: inventory_hostname in groups["Minio_hosts"]
 
 - name: Install Minio
   shell: "dpkg -i minio_20241013133411.0.0_amd64.deb"
   become: true
+  when: inventory_hostname in groups["Minio_hosts"]
 
 - name: Start Minio
   shell: "systemctl start minio"
   become: true
+  when: inventory_hostname in groups["Minio_hosts"]
