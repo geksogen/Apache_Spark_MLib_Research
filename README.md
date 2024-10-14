@@ -70,19 +70,19 @@ ansible-playbook -i host.ini setup-spark-standalone.yml
 ####Master and workers
 ```BASH
 # public IP
-sudo nano /etc/hosts
-<IP> sp-master
-<IP> sp-slave1
-<IP> sp-slave2
+#sudo nano /etc/hosts
+#<IP> sp-master
+#<IP> sp-slave1
+#<IP> sp-slave2
 ############## засунуть в ансибл в тесте
-sudo nano /home/sp-user/.bashrc
-export PATH=$PATH:/home/sp-user/spark/bin
-source /home/sp-user/.bashrc
+#sudo nano /home/sp-user/.bashrc
+#export PATH=$PATH:/home/sp-user/spark/bin
+#source /home/sp-user/.bashrc
 ##############
 
 ############add slave (засуть в ансибл)
-sudo chmod 777 /home/sp-user/spark/conf
-sudo chmod 777 /home/sp-user/spark
+#sudo chmod 777 /home/sp-user/spark/conf
+#sudo chmod 777 /home/sp-user/spark
 cp /home/sp-user/spark/conf/spark-env.sh.template /home/sp-user/spark/conf/spark-env.sh # add to ansible
 ##############
 nano /home/sp-user/spark/conf/spark-env.sh
@@ -90,9 +90,9 @@ nano /home/sp-user/spark/conf/spark-env.sh
 export SPARK_MASTER_HOST=<IP internal>
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 #(засуть в ансибл) в тесте
-nano /home/sp-user/spark/conf/slaves
-sp-slave1
-sp-slave2
+#nano /home/sp-user/spark/conf/slaves
+#sp-slave1
+#sp-slave2
 
 ####On Master only
 ```BASH
@@ -112,16 +112,16 @@ spark-submit --master spark://10.128.0.9:7077
 ```
 
 
-####Create User for ssh
+####Copy ssh to node
 ```BASH
 #All node
-sudo adduser sp-user
-sudo usermod -aG sudo sp-user
+#sudo adduser sp-user
+#sudo usermod -aG sudo sp-user
 #su sp-user 
 #no password
-sudo nano /etc/sudoers
-sp-user ALL=(ALL:ALL) ALL
-sp-user ALL=(ALL:ALL) NOPASSWD: ALL
+#sudo nano /etc/sudoers
+#sp-user ALL=(ALL:ALL) ALL
+#sp-user ALL=(ALL:ALL) NOPASSWD: ALL
 #exit
 #sudo su sp-user #must be no password!!!  
 
@@ -148,6 +148,12 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub sp-user@<node_1>
 ssh-copy-id -i ~/.ssh/id_rsa.pub sp-user@<node_2>
 Enter passwd
 ```
+
+
+1) Edit IP in host (Ansible)
+2) Edit IP in task (Ansible)
+4) Coppy ssh key   (All hosts)
+3) cp spark-env    (All hosts)
 
 ####Resources
 [PySpark Tutorial](https://sparkbyexamples.com/pyspark-tutorial/)
