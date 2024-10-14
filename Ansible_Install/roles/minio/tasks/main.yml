@@ -19,11 +19,27 @@
 
 - name: Create the Minio data storage directories
   file:
-    path: "/usr/local/share/minio"
+    path: "/mnt/data"
     state: directory
     owner: minio
     group: minio
     mode: 0750
+  become: true
+
+- name: Create config file for Minio
+  file:
+    path: "/etc/default/minio"
+  become: true
+
+- name: Add config settings
+  blockinfile:
+    dest: "/etc/default/minio"
+    insertafter: EOF
+    block: |
+      MINIO_VOLUMES="/mnt/data"
+      MINIO_OPTS="--console-address :9001"
+      MINIO_ROOT_USER=minioadmin123
+      MINIO_ROOT_PASSWORD=minioadmin123
   become: true
 
 - name: Download Minio
@@ -35,22 +51,6 @@
   shell: "dpkg -i minio_20241013133411.0.0_amd64.deb"
   become: true
 
-- name: config Minio
-  blockinfile:
-    dest: "/etc/default/minio"
-    insertafter: EOF
-    block: |
-      # environment variable exports
-      MINIO_ACCESS_KEY="minio"
-      MINIO_VOLUMES="/usr/local/share/minio/"
-      MINIO_OPTS="-C /etc/minio --89.169.131.36:9000"
-      MINIO_SECRET_KEY="miniostorage"
-  become: true
-
 - name: Start Minio
   shell: "systemctl start minio"
-  become: true
-
-- name: Enable Minio
-  shell: "systemctl enable minio"
   become: true
