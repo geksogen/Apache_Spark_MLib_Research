@@ -88,6 +88,14 @@
     mode: 0777
     recurse: yes
 
+#- name: Copy spark-env # закинуть локальный файл
+#  copy:
+#    content: |
+#      sp-slave1
+#      sp-slave2
+#    dest: /home/sp-user/spark/conf/slaves
+
+
 #- name: Copy template env config
 #  ansible.builtin.copy:
 #    src: /home/sp-user/spark/conf/spark-env.sh.template
