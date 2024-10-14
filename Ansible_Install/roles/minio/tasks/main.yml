@@ -3,20 +3,17 @@
      update_cache: yes
   become: true
 
-- name: Create Minio group
-  group:
-    name: minio
-    state: present
+- name: Create Group
+  shell: "sudo groupadd -r minio-user"
   become: true
 
-- name: Create Minio user
-  user:
-    name: minio
-    shell: /bin/bash
-    state: present
-    group: minio
+- name: Create User
+  shell: "sudo useradd -M -r -g minio-user minio-user"
   become: true
 
+- name: Grant Access
+  shell: "sudo chown minio-user:minio-user /mnt/data"
+  become: true
 
 - name: Create the Minio data storage directories
   file:
