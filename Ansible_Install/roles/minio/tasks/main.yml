@@ -12,10 +12,11 @@
 - name: Create Minio user
   user:
     name: minio
+    shell: /bin/bash
+    state: present
     group: minio
-    system: "yes"
-    shell: "/usr/sbin/nologin"
   become: true
+
 
 - name: Create the Minio data storage directories
   file:
