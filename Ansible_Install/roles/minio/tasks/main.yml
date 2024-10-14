@@ -11,17 +11,12 @@
   shell: "sudo useradd -M -r -g minio-user minio-user"
   become: true
 
-- name: Grant Access
-  shell: "sudo chown minio-user:minio-user /mnt/data"
+- name: Create Minio data directory
+  shell: "sudo mkdir /mnt/data"
   become: true
 
-- name: Create the Minio data storage directories
-  file:
-    path: "/mnt/data"
-    state: directory
-    owner: minio
-    group: minio
-    mode: 0750
+- name: Grant Access
+  shell: "sudo chown minio-user:minio-user /mnt/data"
   become: true
 
 - name: Config Minio
