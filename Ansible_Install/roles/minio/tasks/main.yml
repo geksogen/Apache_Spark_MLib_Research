@@ -26,20 +26,14 @@
     mode: 0750
   become: true
 
-- name: Create config file for Minio
-  file:
-    path: "/etc/default/minio"
-  become: true
-
-- name: Add config settings
-  blockinfile:
-    dest: "/etc/default/minio"
-    insertafter: EOF
-    block: |
-      MINIO_VOLUMES="/mnt/data"
-      MINIO_OPTS="--console-address :9001"
-      MINIO_ROOT_USER=minioadmin123
-      MINIO_ROOT_PASSWORD=minioadmin123
+- name: Config Minio
+  copy:
+      content: |
+        MINIO_VOLUMES="/mnt/data"
+        MINIO_OPTS="--console-address :9001"
+        MINIO_ROOT_USER=minioadmin123
+        MINIO_ROOT_PASSWORD=minioadmin123
+      dest: "/etc/default/minio"
   become: true
 
 - name: Download Minio
