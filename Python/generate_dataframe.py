@@ -3,7 +3,7 @@ import random
 from random import sample
 import hashlib
 
-SIZE_DATAFRAME = 1000000
+SIZE_DATAFRAME = 10000000
 list_index = sample(range(1, SIZE_DATAFRAME + 1), SIZE_DATAFRAME)
 list_value_df_2 = ['IT', 'Logistic', 'Legal']
 
@@ -11,6 +11,7 @@ def rowValue(x, y):
     return {'u_id': x,
             'value_1': y
             }
+
 
 def data_generator_1():
     temp_list = []
