@@ -66,9 +66,10 @@ Enter passwd
 ```
 
 1) Edit IP in host (Ansible)
-2) Edit IP in task (Ansible) nano roles/spark/tasks/main.yml  
+2) Edit IP in task (Ansible) nano roles/spark/tasks/main.yml    slaves
+3) cp spark-env    (All hosts) nano roles/spark/tasks/main.yml  spark master <IP internal>
 4) Coppy ssh key   (All hosts) sudo su sp-user&cd ~
-3) cp spark-env    (All hosts) add to ansible
+
 
 ####Resources
 [PySpark Tutorial](https://sparkbyexamples.com/pyspark-tutorial/)

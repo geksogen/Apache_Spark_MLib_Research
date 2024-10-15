@@ -12,7 +12,9 @@
 
 - name: Install python package
   ansible.builtin.pip:
-    name: pandas
+    name:
+      - pandas
+      - s3fs
 
 - name: Add IP to hosts file
   blockinfile:
@@ -97,6 +99,24 @@
     path: /home/sp-user/spark
     mode: 0777
     recurse: yes
+
+- hosts: Copy env config
+  tasks:
+    - copy:
+        src: /home/sp-user/spark/conf/spark-env.sh.template
+        dest: /home/sp-user/spark/conf/spark-env.sh
+
+- name: Set env config
+  blockinfile:
+    dest: "/home/sp-user/spark/conf/spark-env.sh"
+    insertafter: EOF
+    block: |
+      # environment variable exports
+      export SPARK_MASTER_HOST=<IP internal>
+      export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+  become: true
+
+
 
 #- name: Copy spark-env # закинуть локальный файл
 #  copy:
