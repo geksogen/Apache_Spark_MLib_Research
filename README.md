@@ -65,7 +65,7 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub sp-user@<node_2>
 Enter passwd
 ```
 
-1) Edit IP in host (Ansible)
+1) Edit IP in host (Ansible) inventory ansible
 2) Edit IP in task (Ansible) nano roles/spark/tasks/main.yml    slaves
 3) cp spark-env    (All hosts) nano roles/spark/tasks/main.yml  spark master <IP internal>
 4) Coppy ssh key   (All hosts) sudo su sp-user&cd ~

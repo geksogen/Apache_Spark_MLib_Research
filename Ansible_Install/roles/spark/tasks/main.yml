@@ -100,11 +100,11 @@
     mode: 0777
     recurse: yes
 
-- hosts: Copy env config
-  tasks:
-    - copy:
-        src: /home/sp-user/spark/conf/spark-env.sh.template
-        dest: /home/sp-user/spark/conf/spark-env.sh
+- name: Copy env config
+  copy:
+    src: /home/sp-user/spark/conf/spark-env.sh.template
+    dest: /home/sp-user/spark/conf/spark-env.sh
+    mode: 0777
 
 - name: Set env config
   blockinfile:
