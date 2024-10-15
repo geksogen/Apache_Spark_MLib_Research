@@ -4,6 +4,16 @@
      update_cache: yes
   become: true
 
+- name: Install pip3
+  apt:
+    name: python3-pip
+    state: present
+  become: true
+
+- name: Install python package
+  ansible.builtin.pip:
+    name: pandas
+
 - name: Add IP to hosts file
   blockinfile:
     dest: "/etc/hosts"

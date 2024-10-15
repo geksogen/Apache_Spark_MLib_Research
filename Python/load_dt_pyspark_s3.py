@@ -29,7 +29,7 @@ if __name__ == "__main__":
 
     spark = SparkSession.builder.config(conf=conf).getOrCreate()
 
-    df = spark.read.format('delta').load('s3a://spark/data_frame_2.csv')
+    df = spark.read.text('s3a://spark/data_frame_2.csv')
     df.show(5, truncate=False)
 
 
