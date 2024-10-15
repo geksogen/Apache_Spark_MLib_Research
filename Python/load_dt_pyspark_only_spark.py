@@ -19,6 +19,7 @@ if __name__ == "__main__":
     .config("spark.hadoop.fs.s3a.secret.key", secret_access_key) \
     .getOrCreate()
 
+    #sdf = spark.read.option("header", "true").csv("s3n://path_to_your_bucket_or_folder/test.csv")
     df_spark = spark.read.csv("s3a://spark/data_frame_1.csv")
     df_spark.show(5, truncate=False)
 

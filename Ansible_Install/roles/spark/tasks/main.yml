@@ -105,6 +105,7 @@
     src: /home/sp-user/spark/conf/spark-env.sh.template
     dest: /home/sp-user/spark/conf/spark-env.sh
     mode: 0777
+    remote_src: yes
 
 - name: Set env config
   blockinfile:
